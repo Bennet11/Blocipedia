@@ -1,0 +1,17 @@
+<h2 class="text-center">Blocipedia</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-primary' %>
+    </div>
+    <br>
+    <div class="col-md-8">
+      <% @wikis.each do |wiki| %>
+      <div class="media">
+        <div class="media-body">
+          <div class="media-heading">
+            <%= link_to wiki.title, wiki %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>
