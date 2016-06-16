@@ -33,7 +33,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     authorize @wiki
     if @wiki.update_attributes(wiki_params)
-      flash[:notice] = "Update successfull"
+      flash[:notice] = "Update successful"
       redirect_to wiki_path(@wiki)
     else
       flsah[:alert] = "Failed to update wiki"
