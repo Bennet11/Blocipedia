@@ -17,6 +17,7 @@ class WikisController < ApplicationController
 
     if @wiki.save
       flash[:notice] = "Wiki was saved successfully."
+      redirect_to wiki_path(@wiki)
     else
       flash[:alert] = "Failed to save wiki."
       render :new
@@ -32,7 +33,7 @@ class WikisController < ApplicationController
 
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Update successfull"
-      redirect_to wiki_path
+      redirect_to wiki_path(@wiki)
     else
       flsah[:alert] = "Failed to update wiki"
       render :edit
