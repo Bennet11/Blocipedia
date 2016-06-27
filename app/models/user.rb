@@ -20,9 +20,12 @@ class User < ActiveRecord::Base
   end
 
   def upgrade_role
-    self.update_attributes(role: 'premium')
+    self.update(role: 'premium')
   end
 
+  def downgrade_role
+    self.update(role: 'standard')
+  end
   private
 
   def default_role
