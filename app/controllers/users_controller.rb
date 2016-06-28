@@ -7,8 +7,15 @@ class UsersController < ApplicationController
     }
   end
 
+  private
+
   def premium_to_standard
     current_user.downgrade_role
+    current_user.private_wikis_to_public
     redirect_to user_path(current_user)
+  end
+
+  def private_wikis_to_public
+    Wiki.private_wikis(current_user).update(private: false)
   end
 end

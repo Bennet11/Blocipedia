@@ -1,14 +1,7 @@
 class Wiki < ActiveRecord::Base
   belongs_to :user
 
-  scope :private_wikis, -> (user) { where(private: true) }
-  scope :public_wikis, -> (user) { where(private: false) }
+  scope :public_wikis, -> (wikis) { wikis ? all : where(private: false) }
+  scope :private_wikis, -> (wikis) { wikis ? all : where(private: true) }
 
-  def public?
-    self.private == false
-  end
-
-  def private?
-    self.private == true
-  end
 end
