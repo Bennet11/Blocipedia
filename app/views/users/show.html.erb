@@ -6,7 +6,7 @@
   <% end %>
 <% elsif current_user.premium? %>
   <%= link_to "Downgrade to standard account",
-    user_premium_to_standard_path(current_user), data: { confirm: 'Are you sure? Doing so will make all your wikis accessible to anyone.' },
+    user_publicize_wiki_path(current_user), data: { confirm: 'Are you sure? Doing so will make all your wikis accessible to anyone.' },
     method: :post, class: 'btn btn-danger'%>
 <% else %>
   <p>

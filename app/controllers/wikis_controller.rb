@@ -1,11 +1,12 @@
 class WikisController < ApplicationController
 
   def index
-    @wikis = Wiki.public_wikis(current_user)
+    @wikis = Wiki.all
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+    @private_wikis = Wiki.private_wikis(current_user)
   end
 
   def new

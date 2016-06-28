@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :wikis, dependent: :destroy
 
-  after_initialize :default_role
+  after_create :default_role
 
   def admin?
     role == 'admin'
@@ -19,13 +19,14 @@ class User < ActiveRecord::Base
     role == 'standard'
   end
 
-  def upgrade_role
+  def upgrade_account
     self.update(role: 'premium')
   end
 
-  def downgrade_role
+  def downgrade_account
     self.update(role: 'standard')
   end
+
   private
 
   def default_role

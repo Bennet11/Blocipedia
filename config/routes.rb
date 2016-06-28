@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   resources :wikis
 
   resources :users, only: [:show, :index] do
-    post 'premium_to_standard' => 'users#premium_to_standard', as: :premium_to_standard
-  end 
+    post 'publicize_wiki' => 'users#publicize_wiki', as: :publicize_wiki
+  end
 
   resources :charges, only: [:new, :create]
 

@@ -25,7 +25,7 @@ class ChargesController < ApplicationController
    )
 
    if charge.paid == true
-     current_user.upgrade_role
+     current_user.upgrade_account
      flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
      redirect_to user_path(current_user) # or wherever
    end
