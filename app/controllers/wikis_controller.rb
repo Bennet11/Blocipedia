@@ -1,12 +1,11 @@
 class WikisController < ApplicationController
 
   def index
-    @wikis = Wiki.all
+    @wikis = Wiki.visible_to(current_user)
   end
 
   def show
     @wiki = Wiki.find(params[:id])
-    @private_wikis = Wiki.private_wikis(current_user)
   end
 
   def new
@@ -37,7 +36,7 @@ class WikisController < ApplicationController
       flash[:notice] = "Update successful"
       redirect_to wiki_path(@wiki)
     else
-      flsah[:alert] = "Failed to update wiki"
+      flash[:alert] = "Failed to update wiki"
       render :edit
     end
   end
@@ -57,6 +56,6 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body)
+    params.require(:wiki).permit(:title, :body, :private)
   end
 end
