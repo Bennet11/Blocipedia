@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :wikis
+  resources :wikis do
+    resources :collaborators, only: [:create, :destroy]
+  end
 
   resources :users, only: [:show, :index] do
     post 'publicize_wiki' => 'users#publicize_wiki', as: :publicize_wiki
