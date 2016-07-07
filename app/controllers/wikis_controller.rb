@@ -16,6 +16,7 @@ class WikisController < ApplicationController
 
   def create
     @wiki = Wiki.new(wiki_params)
+    @collaborators = @wiki.collaborators
 
     if @wiki.save
       flash[:notice] = "Wiki was saved successfully."
@@ -33,6 +34,7 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
+    @collaborators = @wiki.collaborators
     authorize @wiki
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Update successful"
@@ -58,6 +60,6 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private)
+    params.require(:wiki).permit(:title, :body, :private, :collaborators)
   end
 end
