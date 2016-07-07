@@ -1,7 +1,7 @@
 class CollaboratorsController < ApplicationController
 
   def new
-    @collaborator = Collaborator.new
+    @collaborator = Collaborator.new(collaborator_params)
   end
 
   def create

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def publicize_wiki
     current_user.downgrade_account
-    Wiki.private_wikis(current_user).update_all(private: false)
+    current_user.private_wikis(current_user).update_all(private: false)
     redirect_to user_path(current_user)
   end
 end
