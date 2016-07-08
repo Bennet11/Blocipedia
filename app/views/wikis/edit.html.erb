@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Edit Wiki</h1>
     <div class="col-md-8">
-      <%= render partial: 'form', locals: { wiki: @wiki } %>
+      <%= render partial: 'form', locals: { wiki: @wiki, user: @user, collaborations: @collaborations} %>
     </div>
 </div>

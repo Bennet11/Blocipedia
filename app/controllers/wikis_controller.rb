@@ -7,7 +7,6 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
-    @collaborators = @wiki.collaborators
   end
 
   def new
@@ -34,7 +33,6 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    @collaborators = @wiki.collaborators
     authorize @wiki
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Update successful"
@@ -60,6 +58,6 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private, :collaborators)
+    params.require(:wiki).permit(:title, :body, :private)
   end
 end

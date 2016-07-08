@@ -1,3 +1,5 @@
+require 'faker'
+
 5.times do
   User.create!(
   email: Faker::Internet.email,
@@ -11,6 +13,7 @@ end
   Wiki.create!(
   user: users.sample,
   title: Faker::Book.title,
-  body: Faker::Lorem.paragraph(4)
+  body: Faker::Lorem.paragraph(4),
+  private: false
   )
 end

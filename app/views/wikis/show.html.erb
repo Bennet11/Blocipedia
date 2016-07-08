@@ -8,9 +8,11 @@
   <h1 align="center">
     <%= markdown_to_html @wiki.title %>
   </h1>
+  <% if current_user.admin? || current_user.premium? %>
     <div class="col-md-3">
-      <h4>Collaborators:</h4><%= render @collaborators %>
+      <h4>Collaborators:</h4><%= @collaborations %>
     </div>
+  <% end %>
   <div class="row">
     <div class="col-md-8">
     <p><%= markdown_to_html @wiki.body %></p>

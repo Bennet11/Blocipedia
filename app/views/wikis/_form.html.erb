@@ -1,18 +1,32 @@
 <%= form_for @wiki do |f| %>
-  <div class="form-group">
+  <div class="field">
+    <%= f.label :title %><br />
     <%= f.text_field :title, class: 'form-control', placeholder: "Enter Title" %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br />
     <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
-    <%= f.label :collaborators %> <br>
-    <%= f.text_field :collaborators, rows: 8, class: 'form-control', placeholder: 'Enter Collaborators' %>
-    <% if current_user.admin? || current_user.premium? %>
-      <div class="form-group">
-        <div class="col-md-4">
-          <%= f.label :private, class: 'checkbox' do %>
-            <%= f.check_box :private %> Private Wiki
-          <% end %>
-        </div>
+  </div>
+  <% if current_user.admin? || current_user.premium? %>
+    <div class="form-group">
+      <div class="col-md-4">
+        <%= f.label :private, class: 'checkbox' do %>
+          <%= f.check_box :private %> Private Wiki
+        <% end %>
       </div>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :collaborator %>
+    <%= hidden_field_tag "wiki[user_ids][]", nil %>
+    <% User.all.each do |user| %>
+    <%= check_box_tag "wiki[user_ids][]", user.id,
+    @wiki.user_ids.include?(user.id), id: dom_id(user) %>
+    <%= label_tag dom_id(user), user.email %><br>
     <% end %>
-    <%= f.submit "Save", class: 'btn btn-success' %>
+  </div>
+    <div class="actions">
+    <%= f.submit %>
+    </div>
   </div>
 <% end %>
