@@ -10,7 +10,10 @@
   </h1>
   <% if current_user.admin? || current_user.premium? %>
     <div class="col-md-3">
-      <h4>Collaborators:</h4><%= @collaborations %>
+      <h4>Collaborators:</h4>
+      <% @collaborators.each do |collaborator| %>
+        <p><%= collaborator.email %></p>
+      <% end %>
     </div>
   <% end %>
   <div class="row">
