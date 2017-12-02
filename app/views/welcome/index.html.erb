@@ -1,4 +1,8 @@
-<h1>Blocipedia</h1>
-<p id="index-title">Brought to you by John Bennet</p>
-<div class="posts">Headline</div>
-<section>Section Element</section>
+<h1 id="index-title">Blocipedia</h1>
+<div class="jumbotron">
+  <p class="align-center">
+    To view wikis you need to <br/>
+    <%= link_to "Sign Up", new_user_registration_path, :class => 'btn btn-primary'  %> or
+    <%= link_to "Sign In", new_user_session_path, :class => 'btn btn-primary'  %>
+  </p>
+</div>
